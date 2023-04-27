@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import logo from '../assets/Battmovil-logo.svg'
 import '../styles/FormLogin.scss'
 
 const initialLoginForm = {
@@ -14,12 +13,11 @@ export const LoginForm = () => {
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value })
-    setError(e.target.value)
   }
   return (
    <form>
         <div className='container-logo'>
-        <img className='logo' src={logo} alt="Logo Battmovil" />
+        <img className='logo' src={'src/assets/Battmovil-logo.svg'} alt="Logo Battmovil" />
         </div>
         <input name="email" id='email' type="email" placeholder="example@email.com" value={form.email} onChange={handleChange}/>
         <input name="password" type="password" placeholder="password" value={form.password} onChange={handleChange}/>
