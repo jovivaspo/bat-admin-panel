@@ -1,11 +1,8 @@
-import { LoginForm } from './components/LoginForm'
+import { AppRouter } from './router/AppRouter'
 
 function App () {
   return (
-    <>
-      <div>App</div>
-      <LoginForm/>
-    </>
+   <AppRouter/>
   )
 }
 

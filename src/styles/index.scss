@@ -28,6 +28,9 @@ body {
 #root{
   width: 100vw;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
 }
 
 h1 {
@@ -37,5 +40,19 @@ h1 {
 
 p{
   margin: 0;
+}
+
+button {
+ min-width: 80px;
+ height: 30px;
+ border-radius: 10px;
+ transition: all ease-in 100ms;
+ background-color: transparent;
+ border: 1px solid $mainColor;
+ color:$mainColor
+}
+
+button:hover{
+  opacity: 0.6;
 }
 

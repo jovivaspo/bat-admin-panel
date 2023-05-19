@@ -1,6 +1,7 @@
 export default {
+  automock: false,
   testEnvironment: 'jest-environment-jsdom',
-  setupFiles: ['./jest.setup.js', '@testing-library/react/dont-cleanup-after-each'],
+  setupFilesAfterEnv: ['./jest.setup.js', '@testing-library/react/dont-cleanup-after-each'],
   transform: {
     '^.+\\.jsx?$': 'babel-jest',
     '^.+\\.svg$': 'jest-transformer-svg'
