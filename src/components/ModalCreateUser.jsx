@@ -38,7 +38,10 @@ export const ModalCreateUser = ({ modalIsOpen, toggleOpenModal }) => {
                 <input type="password" placeholder='Confirma Contraseña' name='confirmPassword' value={form.confirmPassword} onChange={handleChange}/>
                 <ContainerButtons>
                     <button>Guardar</button>
-                    <button onClick={handleCancel}>Cancelar</button>
+                    <button onClick={(e) => {
+                      handleCancel(e)
+                      toggleOpenModal()
+                    }}>Cancelar</button>
                 </ContainerButtons>
                 <p className='error'>{messageForm}</p>
             </form>

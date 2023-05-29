@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { endpoints } from '../api/api'
+import { useUsers } from './useUsers'
 
 const initialForm = {
   name: '',
@@ -11,6 +11,7 @@ const initialForm = {
 export const useFormCreateUser = () => {
   const [form, setForm] = useState(initialForm)
   const [messageForm, setMessageForm] = useState('')
+  const { createUser } = useUsers()
 
   useEffect(() => {
     if (messageForm) {
@@ -30,37 +31,11 @@ export const useFormCreateUser = () => {
     setForm(initialForm)
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
     if (!form.name || !form.email || !form.password || !form.confirmPassword) return setMessageForm('Complete todos los campos')
     if (form.password !== form.confirmPassword) return setMessageForm('Las contraseñas no coinciden')
-
-    try {
-      const res = await fetch(endpoints.createuser, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: 'bearer ' + localStorage.getItem('token')
-        },
-        body: JSON.stringify({
-          name: form.name,
-          email: form.email,
-          password: form.password
-        })
-      })
-
-      const data = await res.json()
-
-      if (data.error) throw new Error(data.error)
-
-      console.log(data)
-
-      setMessageForm(data.message)
-      setForm(initialForm)
-    } catch (error) {
-      console.log(error)
-      return setMessageForm(error.message || 'Lo sentimos, inténtlo más tarde')
-    }
+    createUser(form, setMessageForm, setForm, initialForm)
   }
 
   return { form, handleChange, handleCancel, handleSubmit, messageForm }
